@@ -1,5 +1,5 @@
 import {createContext, useContext, useState, useEffect} from "react"
-
+// testando Commit
 import { api } from "../services/api" //Importamos o banco
 
 export const AuthContext = createContext({});
