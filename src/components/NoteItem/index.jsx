@@ -20,4 +20,3 @@ export function NoteItem({ isNew, value, onClick, ...rest }) {
     )
 }
 
-// testando git
