@@ -19,3 +19,5 @@ export function NoteItem({ isNew, value, onClick, ...rest }) {
         </Container>
     )
 }
+
+// testando git
