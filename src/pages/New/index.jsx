@@ -18,8 +18,8 @@ function handleAddLink(){
   setNewLink("") // "Resetar" o estado do NewLink, limpar ele
 }
 
-function handleRemoveLink(deleted) {
-  setLinks(prevState => prevState.filter(link => link !== deleted))
+function handleRemoveLink(deleted) { //deleted recebe o Link
+  setLinks(prevState => prevState.filter((link, index) => index !== deleted)) // Filter retorna a lista de Links sem o "deleted"
 }
 
   return (
@@ -42,7 +42,7 @@ function handleRemoveLink(deleted) {
                 <NoteItem 
                 key={String(index)}
                 value={link}
-                onClick={() => {handleRemoveLink(link)}}
+                onClick={() => {handleRemoveLink(index)}}
                 /> 
               ))
             }
