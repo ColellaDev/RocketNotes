@@ -1,5 +1,6 @@
 import  { useState, useEffect } from "react"
 import { FiPlus, FiSearch } from 'react-icons/fi'
+import { useNavigate  } from "react-router-dom"
 
 import { api } from "../../services/api"
 
@@ -31,7 +32,13 @@ export function Home() {
     } else {
       setTagsSelected(prevState => [...prevState, tagName])
     }
-  }
+ }
+
+ const navigate = useNavigate()
+
+ function handleDetails(id) {
+   navigate(`/details/${id}`)
+ }
 
   useEffect(() => {
     async function fetchTags() {
@@ -58,7 +65,7 @@ export function Home() {
         <h1>Rocketnotes</h1>
       </Brand>
 
-      <Header></Header>
+      <Header/>
 
       <Menu>
       <li>
@@ -78,7 +85,6 @@ export function Home() {
                    />
               </li>
             ))
-           
         }
        
       </Menu>
@@ -93,16 +99,15 @@ export function Home() {
 
       <Content>
       <Section title="Minhas notas">
-
         {
           notes.map(note => (
             <Note 
              key={String(note.id)}
              data={note}
+             onClick={( ) => handleDetails(note.id)}
            />
           ))
         }
-
         </Section>
       </Content>
 
@@ -110,6 +115,7 @@ export function Home() {
         <FiPlus />
         Criar nota
       </NewNote>
+
     </Container>
   )
 }
