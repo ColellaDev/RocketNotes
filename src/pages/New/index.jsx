@@ -62,6 +62,14 @@ async function handleNewNote() {
     return alert("Você deixou uma Tag no campo adicionar mas não clicou em adicionar.")
   }
 
+  if (!newLink && links.length === 0) {
+    return alert("Digite um link para nota.")
+  }
+  
+  if (!newTag && tags.length === 0) {
+    return alert("Digite uma tag para nota.")
+  }
+
   await api.post("/notes", {
     title,
     description,

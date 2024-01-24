@@ -10,16 +10,13 @@ import {api} from "../../services/api"
 
 import { Container, Form, Avatar } from "./styles";
 
-
-
-
 export function Profile() {
   const {user, updateProfile} = useAuth()
 
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
-  const [passwordOld, setPasswordOld] = useState()
-  const [passwordNew, setPasswordNew] = useState()
+  const [passwordOld, setPasswordOld] = useState("")
+  const [passwordNew, setPasswordNew] = useState("")
 
   const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
   const [avatar, setAvatar] = useState(avatarUrl)
@@ -32,6 +29,12 @@ const navigate = useNavigate()
   }
 
   async function handleUpdate(){
+
+    if (passwordOld && !passwordNew) {
+      alert("Insira uma nova senha!");
+      return;
+    }
+
     const updated = {
       name,
       email,
@@ -42,6 +45,8 @@ const navigate = useNavigate()
     const userUpdated = Object.assign(user, updated)
 
     await updateProfile({user: userUpdated, avatarFile})
+
+    window.location.reload();
   }
 
   function handleChangeAvatar(event) {
