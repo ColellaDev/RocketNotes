@@ -46,7 +46,7 @@ const navigate = useNavigate()
 
     await updateProfile({user: userUpdated, avatarFile})
 
-    window.location.reload();
+    
   }
 
   function handleChangeAvatar(event) {
